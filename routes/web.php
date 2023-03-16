@@ -18,3 +18,5 @@ use App\Http\Controllers\HomeController;
 // });
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::post('/', [HomeController::class, 'submit']);
+Route::get('execute', [HomeController::class, 'viewExecute'])->name('execute');
+Route::post('execute', [HomeController::class, 'execute']);

@@ -9,17 +9,25 @@
         }
     </style>
 <div class="container">
-    <h2 class="mt-4" style="text-align: center">SQL Quiz</h2>
+    <h2 class="mt-4" style="text-align: center">SQL Execute</h2>
 
     <form method="POST">
         @csrf
         <div class="form-group">
             <label for="exampleInputEmail1">Tên: @if ($errors->has('name'))<p class="text-error">*{{$errors->first('name')}}</p>@endif</label>
-            <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tên" value="">
+            <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tên">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Câu số: @if ($errors->has('quiz_number'))<p class="text-error">*{{$errors->first('quiz_number')}}</p>@endif</label>
             <input type="text" class="form-control" name="quiz_number" id="exampleInputPassword1" placeholder="Câu số">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Kiểu:</label>
+            <select name="type" class="form-control" id="">
+                <option value="insert">Insert</option>
+                <option value="update">Update</option>
+                <option value="delete">Delete</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Câu truy vấn: @if ($errors->has('answer'))<p class="text-error">*{{$errors->first('answer')}}</p>@endif</label>
@@ -31,6 +39,11 @@
 @if (Session::has('msg'))
     <script>
         swal("Thành công!", "{{Session::get('msg')}}", "success");
+    </script>
+@endif
+@if (Session::has('errMsg'))
+    <script>
+        swal("Thất bại!", "{{Session::get('errMsg')}}", "warning");
     </script>
 @endif
 </body>
